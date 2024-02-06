@@ -1,3 +1,5 @@
+// gcc `pkg-config --cflags gtk+-3.0` -o firstproject0 firstproject0.c `pkg-config --libs gtk+-3.0` -rdynamic
+
 #include <gtk/gtk.h>
 #include <string.h>
 #include <stdlib.h>
@@ -16,20 +18,38 @@ static void on_send_clicked(GtkButton *button, gpointer data){
     GtkComboBox *combobox2 = GTK_COMBO_BOX(gtk_builder_get_object(builder, "entry2"));
     int response = gtk_combo_box_get_active (combobox);
     int response2 = gtk_combo_box_get_active (combobox2);
-    printf("response: %d", response);
-    g_print("response2: %d", response2);
+    const gchar *entry_text = gtk_entry_get_text(GTK_ENTRY(entry));
+    // printf("response: %d", response);
+    // g_print("response2: %d", response2);
+    const gchar *val = "Invalid comparison";
+    if (response != response2){
+        g_print("Error: %s \n", val);
+    }
+    else if (response == 0 && response2 == 0) {
+        double converted = atoi(entry_text);
+        g_print("Abhi: %f m\n", converted);
+        double final = converted * 3.28084;
+        g_print("Computer: %f ft\n", final);
+    }
+    else if (response == 1 && response2 == 1) {
+        double converted = atoi(entry_text);
+        g_print("Abhi: %f kg\n", converted);
+        double final = converted * 2.20462262185;
+        g_print("Computer: %f lbs\n", final);
+    }
+    else if (response == 2 && response2 == 2) {
+        double converted = atoi(entry_text);
+        g_print("Abhi: %f ltr\n", converted);
+        double final = converted * 33.814;
+        g_print("Computer: %f oz.\n", final);
+    }
+    else if (response == 3 && response2 == 3){
+        double converted = atoi(entry_text);
+        g_print("Abhi: %f C\n", converted);
+        double final = converted * (9/5) + 32;
+        g_print("Computer: %f F\n", final);
+    }
 
-//   const gchar *entry_text = gtk_entry_get_text(data -> entry);
-//   int combo_box_val = gtk_combo_box_get_active(data -> combobox);
-//   g_print(combo_box_val);
-
-
-//   int combo_box_val_2 = gtk_combo_box_get_active(gtk_builder_get_object( builder -> combobox2));
-  
-  // GtkComboBox *combobox = GTK_COMBO_BOX(gtk_builder_get_object(uder_data, )) ;
-  // combobox = 
-//   double converted = atoi(entry_text);
-//   g_print("Abhi: %f\n", converted);
   // int result = strcmp(entry_text, "Hello, World!");
   // const gchar *response;
   // if (result == 0){
@@ -38,8 +58,6 @@ static void on_send_clicked(GtkButton *button, gpointer data){
   // else {
   //     response = "You bugging!";
   // }
-//   double final = converted * 3.6;
-//   g_print("Computer: %f\n", final);
 }
 
 //this quit button is a bit shitty cause it needs to be clicked twice
