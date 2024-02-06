@@ -73,7 +73,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkComboBoxText" id="entry2">
+          <object class="GtkComboBoxText" id="entry3">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <items>
@@ -84,12 +84,12 @@
             </items>
           </object>
           <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">2</property>
+            <property name="left_attach">0</property>
+            <property name="top_attach">3</property>
           </packing>
         </child>
         <child>
-          <object class="GtkComboBoxText" id="entry1">
+          <object class="GtkComboBoxText" id="entry4">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <items>
@@ -100,8 +100,8 @@
             </items>
           </object>
           <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">2</property>
+            <property name="left_attach">1</property>
+            <property name="top_attach">3</property>
           </packing>
         </child>
         <child>
