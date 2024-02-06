@@ -10,19 +10,26 @@
 
 static void on_send_clicked(GtkButton *button, gpointer data){
     // struct user_data *received = 
-//   data -> entry = GTK_ENTRY(gtk_builder_get_object(builder,"uinput"));
-//   data -> combobox = GTK_COMBO_BOX(gtk_builder_get_object(builder, "entry1"));
-//   data -> combobox2 = GTK_COMBO_BOX(gtk_builder_get_object(builder, "entry2"));
+    GtkBuilder *builder = data;
+    GtkEntry *entry = GTK_ENTRY(gtk_builder_get_object(builder,"uinput"));
+    GtkComboBox *combobox = GTK_COMBO_BOX(gtk_builder_get_object(builder, "entry1"));
+    GtkComboBox *combobox2 = GTK_COMBO_BOX(gtk_builder_get_object(builder, "entry2"));
+    int response = gtk_combo_box_get_active (combobox);
+    int response2 = gtk_combo_box_get_active (combobox2);
+    printf("response: %d", response);
+    g_print("response2: %d", response2);
+
 //   const gchar *entry_text = gtk_entry_get_text(data -> entry);
 //   int combo_box_val = gtk_combo_box_get_active(data -> combobox);
 //   g_print(combo_box_val);
-GtkBuilder *builder = gpointer 
-  int combo_box_val_2 = gtk_combo_box_get_active(data -> combobox2);
+
+
+//   int combo_box_val_2 = gtk_combo_box_get_active(gtk_builder_get_object( builder -> combobox2));
   
   // GtkComboBox *combobox = GTK_COMBO_BOX(gtk_builder_get_object(uder_data, )) ;
   // combobox = 
-  double converted = atoi(entry_text);
-  g_print("Abhi: %f\n", converted);
+//   double converted = atoi(entry_text);
+//   g_print("Abhi: %f\n", converted);
   // int result = strcmp(entry_text, "Hello, World!");
   // const gchar *response;
   // if (result == 0){
@@ -31,8 +38,8 @@ GtkBuilder *builder = gpointer
   // else {
   //     response = "You bugging!";
   // }
-  double final = converted * 3.6;
-  g_print("Computer: %f\n", final);
+//   double final = converted * 3.6;
+//   g_print("Computer: %f\n", final);
 }
 
 //this quit button is a bit shitty cause it needs to be clicked twice
