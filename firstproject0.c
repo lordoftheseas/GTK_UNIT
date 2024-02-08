@@ -3,14 +3,9 @@
 #include <gtk/gtk.h>
 #include <string.h>
 #include <stdlib.h>
-// static void
-// print_hello (GtkWidget *widget,
-//              gpointer   data)
-// {
-//   g_print ("Hello World\n");
-// }
 
-static void on_send_clicked(GtkButton *button, gpointer data){
+
+void on_send_clicked(__attribute__((unused)) GtkButton *button, gpointer data){
     // struct user_data *received = 
     GtkBuilder *builder = data;
     GtkWindow *window = GTK_WINDOW(gtk_builder_get_object(data, "window"));
@@ -26,7 +21,7 @@ static void on_send_clicked(GtkButton *button, gpointer data){
     const gchar *val = "Invalid comparison";
     gchar *result_text = NULL;
     
-    if (response != response2){
+    if (response != response2 || response == -1 || response2 == -1){
         // g_print("Error: %s \n", val);
         result_text = g_strdup_printf("Error: %s \n", val);
     }
@@ -58,10 +53,24 @@ static void on_send_clicked(GtkButton *button, gpointer data){
         // g_print("Computer: %f F\n", final);
         result_text = g_strdup_printf("Abhi: %f C\nComputer: %f F\n", converted, final);
     }
-    GtkWidget *dialog = gtk_message_dialog_new(window, GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE, "%s", result_text);
+    GtkDialog *dialog = GTK_DIALOG(gtk_builder_get_object(GTK_BUILDER(data), "dialog2"));
+    // GtkWidget *dialog = gtk_message_dialog_new(window, GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE, "%s", result_text);
     // gtk_window_set_transient_for (dialog, window);
-    gtk_dialog_run(GTK_DIALOG(dialog));
-    gtk_widget_destroy(dialog);
+
+    GtkLabel *label = GTK_LABEL(gtk_builder_get_object(builder,"labeled1"));
+    gtk_label_set_text(label,result_text);
+    int closing = gtk_dialog_run((dialog));
+  
+   switch (closing)
+   {
+      case GTK_RESPONSE_CLOSE:
+         // Just hide dialog
+         break;
+
+   }
+    gtk_widget_hide(GTK_WIDGET(dialog));
+    // gtk_widget_destroy(dialog);
+
     g_free(result_text);
 
   // int result = strcmp(entry_text, "Hello, World!");
@@ -72,15 +81,17 @@ static void on_send_clicked(GtkButton *button, gpointer data){
   // else {
   //     response = "You bugging!";
   // }
+
 }
 
 //this quit button is a bit shitty cause it needs to be clicked twice
-void show_quit_screen(GtkWidget *widget, gpointer dialog) {
+void show_quit_screen(__attribute__((unused)) GtkWidget *widget, gpointer data) {
 
   // gtk_dialog_run(GTK_DIALOG(dialog));
   // gtk_widget_show_all(dialog);
+    GtkDialog *dialog = GTK_DIALOG(gtk_builder_get_object(GTK_BUILDER(data), "dialog1"));
 
-  int response = gtk_dialog_run(GTK_DIALOG(dialog));
+    int response = gtk_dialog_run((dialog));
   
    switch (response)
    {
@@ -96,7 +107,7 @@ void show_quit_screen(GtkWidget *widget, gpointer dialog) {
          // do_nothing_since_dialog_was_cancelled ();
          break;
    }
-   gtk_widget_hide(dialog);
+   gtk_widget_hide(GTK_WIDGET(dialog));
 }
 
   struct user_data{
@@ -132,12 +143,12 @@ main (int   argc,
     // GtkWidget *widget = GTK_WIDGET(gtk_builder_get_object(builder,"Box"));
     // window = GTK_WIDGET(gtk_builder_get_object(builder, "window"));
     dialog = GTK_DIALOG(gtk_builder_get_object(builder, "dialog1"));
-
+    gtk_builder_connect_signals (builder, builder);
 //   struct user_data *retreive_data = data;
-  g_signal_connect (send, "clicked", G_CALLBACK (on_send_clicked), builder);
+//   g_signal_connect_all (send, "clicked", G_CALLBACK (on_send_clicked), builder);
   
-  button = GTK_BUTTON(gtk_builder_get_object (builder, "quit"));
-  g_signal_connect (button, "clicked", G_CALLBACK (show_quit_screen), (gpointer) dialog);
+    button = GTK_BUTTON(gtk_builder_get_object (builder, "quit"));
+//   g_signal_connect (button, "clicked", G_CALLBACK (show_quit_screen), (gpointer) dialog);
   // gtk_widget_show_all(window);
   // gtk_builder_connect_signals(builder, builder);
 
