@@ -15,10 +15,10 @@ static void on_send_clicked(GtkButton *button, gpointer data){
     GtkBuilder *builder = data;
     GtkWindow *window = GTK_WINDOW(gtk_builder_get_object(data, "window"));
     GtkEntry *entry = GTK_ENTRY(gtk_builder_get_object(builder,"uinput"));
-    GtkWidget *combobox = GTK_WIDGET(gtk_builder_get_object(builder, "entry1"));
-    GtkWidget *combobox2 = GTK_WIDGET(gtk_builder_get_object(builder, "entry2"));
-    int response = gtk_combo_box_get_active (GTK_COMBO_BOX(combobox));
-    int response2 = gtk_combo_box_get_active (GTK_COMBO_BOX(combobox2));
+    GtkComboBox *combobox = GTK_COMBO_BOX(gtk_builder_get_object(builder, "entry1"));
+    GtkComboBox *combobox2 = GTK_COMBO_BOX(gtk_builder_get_object(builder, "entry2")); //cast it to the gtkcombobox
+    int response = gtk_combo_box_get_active (combobox);
+    int response2 = gtk_combo_box_get_active (combobox2);
     const gchar *entry_text = gtk_entry_get_text(GTK_ENTRY(entry));
     // printf("response: %d", response);
     // g_print("response2: %d", response2);
@@ -110,7 +110,7 @@ main (int   argc,
       char *argv[])
 {
   GtkBuilder *builder;
-  GtkWidget *window;
+  // GtkWidget *window;
   GtkButton *button;
   GtkButton *send;
   GError *error = NULL;
@@ -129,8 +129,8 @@ main (int   argc,
     }
     //we get all the elements from the windows
     send = GTK_BUTTON(gtk_builder_get_object(builder, "button2"));
-    GtkWidget *widget = GTK_WIDGET(gtk_builder_get_object(builder,"Box"));
-    window = GTK_WIDGET(gtk_builder_get_object(builder, "window"));
+    // GtkWidget *widget = GTK_WIDGET(gtk_builder_get_object(builder,"Box"));
+    // window = GTK_WIDGET(gtk_builder_get_object(builder, "window"));
     dialog = GTK_DIALOG(gtk_builder_get_object(builder, "dialog1"));
 
 //   struct user_data *retreive_data = data;
