@@ -13,6 +13,7 @@
 static void on_send_clicked(GtkButton *button, gpointer data){
     // struct user_data *received = 
     GtkBuilder *builder = data;
+    GtkWindow *window = GTK_WINDOW(gtk_builder_get_object(data, "window"));
     GtkEntry *entry = GTK_ENTRY(gtk_builder_get_object(builder,"uinput"));
     GtkWidget *combobox = GTK_WIDGET(gtk_builder_get_object(builder, "entry1"));
     GtkWidget *combobox2 = GTK_WIDGET(gtk_builder_get_object(builder, "entry2"));
@@ -57,11 +58,11 @@ static void on_send_clicked(GtkButton *button, gpointer data){
         // g_print("Computer: %f F\n", final);
         result_text = g_strdup_printf("Abhi: %f C\nComputer: %f F\n", converted, final);
     }
-    GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE, "%s", result_text);
-    // gtk_window_set_transient_for (dialog, data);
+    GtkWidget *dialog = gtk_message_dialog_new(window, GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE, "%s", result_text);
+    // gtk_window_set_transient_for (dialog, window);
     gtk_dialog_run(GTK_DIALOG(dialog));
     gtk_widget_destroy(dialog);
-    // g_free(result_text);
+    g_free(result_text);
 
   // int result = strcmp(entry_text, "Hello, World!");
   // const gchar *response;
