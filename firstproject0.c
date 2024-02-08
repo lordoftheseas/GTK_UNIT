@@ -26,37 +26,41 @@ static void on_send_clicked(GtkButton *button, gpointer data){
     gchar *result_text = NULL;
     
     if (response != response2){
-        g_print("Error: %s \n", val);
-        // result_text = g_strdup_printf("Error: %s \n", val);
+        // g_print("Error: %s \n", val);
+        result_text = g_strdup_printf("Error: %s \n", val);
     }
     else if (response == 0 && response2 == 0) {
         double converted = atof(entry_text);
-        g_print("Abhi: %f m\n", converted);
-        double final = converted * 3.28084;
-        g_print("Computer: %f ft\n", final);
-        // result_text = g_strdup_printf("Abhi: %f m\nComputer: %f ft\n", converted, converted * 3.28084);
+        // g_print("Abhi: %f m\n", converted);
+        // double final = converted * 3.28084;
+        // g_print("Computer: %f ft\n", final);
+        result_text = g_strdup_printf("Abhi: %f m\nComputer: %f ft\n", converted, converted * 3.28084);
     }
     else if (response == 1 && response2 == 1) {
         double converted = atof(entry_text);
-        g_print("Abhi: %f kg\n", converted);
-        double final = converted * 2.20462262185;
-        g_print("Computer: %f lbs\n", final);
+        // g_print("Abhi: %f kg\n", converted);
+        // double final = converted * 2.20462262185;
+        // g_print("Computer: %f lbs\n", final);
+        result_text = g_strdup_printf("Abhi: %f kg\nComputer: %f lbs\n", converted, converted * 2.20462262185);
     }
     else if (response == 2 && response2 == 2) {
         double converted = atof(entry_text);
-        g_print("Abhi: %f ltr\n", converted);
-        double final = converted * 33.814;
-        g_print("Computer: %f oz.\n", final);
+        // g_print("Abhi: %f ltr\n", converted);
+        // double final = converted * 33.814;
+        // g_print("Computer: %f oz.\n", final);
+        result_text = g_strdup_printf("Abhi: %f ltr\nComputer: %f oz\n", converted, converted * 33.814);
     }
     else if (response == 3 && response2 == 3){
         double converted = atof(entry_text);
-        g_print("Abhi: %f C\n", converted);
+        // g_print("Abhi: %f C\n", converted);
         double final = converted * (9/5) + 32;
-        g_print("Computer: %f F\n", final);
+        // g_print("Computer: %f F\n", final);
+        result_text = g_strdup_printf("Abhi: %f C\nComputer: %f F\n", converted, final);
     }
-    // GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE, "%s", result_text);
-    // gtk_dialog_run(GTK_DIALOG(dialog));
-    // gtk_widget_destroy(dialog);
+    GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE, "%s", result_text);
+    // gtk_window_set_transient_for (dialog, data);
+    gtk_dialog_run(GTK_DIALOG(dialog));
+    gtk_widget_destroy(dialog);
     // g_free(result_text);
 
   // int result = strcmp(entry_text, "Hello, World!");
