@@ -21,34 +21,44 @@ static void on_send_clicked(GtkButton *button, gpointer data){
     const gchar *entry_text = gtk_entry_get_text(GTK_ENTRY(entry));
     // printf("response: %d", response);
     // g_print("response2: %d", response2);
+
+    const gchar *val = "Invalid comparison";
+    gchar *result_text = NULL;
+
     const gchar *val = "Invalid comparison";
     if (response != response2){
         g_print("Error: %s \n", val);
+        // result_text = g_strdup_printf("Error: %s \n", val);
     }
     else if (response == 0 && response2 == 0) {
-        double converted = atoi(entry_text);
+        double converted = atof(entry_text);
         g_print("Abhi: %f m\n", converted);
         double final = converted * 3.28084;
         g_print("Computer: %f ft\n", final);
+        // result_text = g_strdup_printf("Abhi: %f m\nComputer: %f ft\n", converted, converted * 3.28084);
     }
     else if (response == 1 && response2 == 1) {
-        double converted = atoi(entry_text);
+        double converted = atof(entry_text);
         g_print("Abhi: %f kg\n", converted);
         double final = converted * 2.20462262185;
         g_print("Computer: %f lbs\n", final);
     }
     else if (response == 2 && response2 == 2) {
-        double converted = atoi(entry_text);
+        double converted = atof(entry_text);
         g_print("Abhi: %f ltr\n", converted);
         double final = converted * 33.814;
         g_print("Computer: %f oz.\n", final);
     }
     else if (response == 3 && response2 == 3){
-        double converted = atoi(entry_text);
+        double converted = atof(entry_text);
         g_print("Abhi: %f C\n", converted);
         double final = converted * (9/5) + 32;
         g_print("Computer: %f F\n", final);
     }
+    // GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE, "%s", result_text);
+    // gtk_dialog_run(GTK_DIALOG(dialog));
+    // gtk_widget_destroy(dialog);
+    // g_free(result_text);
 
   // int result = strcmp(entry_text, "Hello, World!");
   // const gchar *response;
