@@ -24,8 +24,7 @@ static void on_send_clicked(GtkButton *button, gpointer data){
 
     const gchar *val = "Invalid comparison";
     gchar *result_text = NULL;
-
-    const gchar *val = "Invalid comparison";
+    
     if (response != response2){
         g_print("Error: %s \n", val);
         // result_text = g_strdup_printf("Error: %s \n", val);
