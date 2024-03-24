@@ -1,3 +1,5 @@
+// This line compiles the GTK project using gcc with necessary flags and libraries
+// It generates the executable named "firstproject0"
 // gcc `pkg-config --cflags gtk+-3.0` -o firstproject0 firstproject0.c `pkg-config --libs gtk+-3.0` -rdynamic
 
 #include <gtk/gtk.h>
@@ -73,18 +75,17 @@ void on_send_clicked(__attribute__((unused)) GtkButton *button, gpointer data){
 
     g_free(result_text);
 
-  // int result = strcmp(entry_text, "Hello, World!");
-  // const gchar *response;
-  // if (result == 0){
-  //     response = "Hello! How are you?";
-  // }
-  // else {
-  //     response = "You bugging!";
-  // }
+    // int result = strcmp(entry_text, "Hello, World!");
+    // const gchar *response;
+    // if (result == 0){
+    //     response = "Hello! How are you?";
+    // }
+    // else {
+    //     response = "You bugging!";
+    // }
 
 }
 
-//this quit button is a bit shitty cause it needs to be clicked twice
 void show_quit_screen(__attribute__((unused)) GtkWidget *widget, gpointer data) {
 
   // gtk_dialog_run(GTK_DIALOG(dialog));
@@ -114,7 +115,7 @@ void show_quit_screen(__attribute__((unused)) GtkWidget *widget, gpointer data) 
     GtkEntry *entry;
     GtkComboBox *combobox;
     GtkComboBox *combobox2;
-  }; //so data is the variable which is later passed as an address and is derefrenced when passsed to another function
+  }; // So data is the variable which is later passed as an address and is derefrenced when passsed to another function
 
 int
 main (int   argc,
@@ -144,13 +145,13 @@ main (int   argc,
     // window = GTK_WIDGET(gtk_builder_get_object(builder, "window"));
     dialog = GTK_DIALOG(gtk_builder_get_object(builder, "dialog1"));
     gtk_builder_connect_signals (builder, builder);
-//   struct user_data *retreive_data = data;
-//   g_signal_connect_all (send, "clicked", G_CALLBACK (on_send_clicked), builder);
+    //   struct user_data *retreive_data = data;
+    //   g_signal_connect_all (send, "clicked", G_CALLBACK (on_send_clicked), builder);
   
     button = GTK_BUTTON(gtk_builder_get_object (builder, "quit"));
-//   g_signal_connect (button, "clicked", G_CALLBACK (show_quit_screen), (gpointer) dialog);
-  // gtk_widget_show_all(window);
-  // gtk_builder_connect_signals(builder, builder);
+    //   g_signal_connect (button, "clicked", G_CALLBACK (show_quit_screen), (gpointer) dialog);
+    // gtk_widget_show_all(window);
+    // gtk_builder_connect_signals(builder, builder);
 
   gtk_main ();
 
