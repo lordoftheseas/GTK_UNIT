@@ -75,21 +75,10 @@ void on_send_clicked(__attribute__((unused)) GtkButton *button, gpointer data){
 
     g_free(result_text);
 
-    // int result = strcmp(entry_text, "Hello, World!");
-    // const gchar *response;
-    // if (result == 0){
-    //     response = "Hello! How are you?";
-    // }
-    // else {
-    //     response = "You bugging!";
-    // }
-
 }
 
 void show_quit_screen(__attribute__((unused)) GtkWidget *widget, gpointer data) {
 
-  // gtk_dialog_run(GTK_DIALOG(dialog));
-  // gtk_widget_show_all(dialog);
     GtkDialog *dialog = GTK_DIALOG(gtk_builder_get_object(GTK_BUILDER(data), "dialog1"));
 
     int response = gtk_dialog_run((dialog));
@@ -131,7 +120,7 @@ main (int   argc,
   gtk_init (&argc, &argv);
 
   /* Construct a GtkBuilder instance and load our UI description */
-  //here is builder that opens the xml file
+  // Here is builder that opens the xml file
   builder = gtk_builder_new ();
   if (gtk_builder_add_from_file (builder, "builder.ui", &error) == 0)
     {
@@ -139,19 +128,11 @@ main (int   argc,
       g_clear_error (&error);
       return 1;
     }
-    //we get all the elements from the windows
+    // We get all the elements from the windows
     send = GTK_BUTTON(gtk_builder_get_object(builder, "button2"));
-    // GtkWidget *widget = GTK_WIDGET(gtk_builder_get_object(builder,"Box"));
-    // window = GTK_WIDGET(gtk_builder_get_object(builder, "window"));
     dialog = GTK_DIALOG(gtk_builder_get_object(builder, "dialog1"));
     gtk_builder_connect_signals (builder, builder);
-    //   struct user_data *retreive_data = data;
-    //   g_signal_connect_all (send, "clicked", G_CALLBACK (on_send_clicked), builder);
-  
     button = GTK_BUTTON(gtk_builder_get_object (builder, "quit"));
-    //   g_signal_connect (button, "clicked", G_CALLBACK (show_quit_screen), (gpointer) dialog);
-    // gtk_widget_show_all(window);
-    // gtk_builder_connect_signals(builder, builder);
 
   gtk_main ();
 
